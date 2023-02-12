@@ -5,7 +5,7 @@ module.exports = {
     SAMPLE: process.env.SAMPLE,
   },
   images: {
-    domains: [],
+    domains: ['api.openweathermap.org'],
   },
   i18n: {
     locales: ['en', 'ja'],
