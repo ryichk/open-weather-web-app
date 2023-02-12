@@ -4,18 +4,17 @@ services:
   app:
     build: .
     volumes:
-      - .:/web-front
+      - .:/app
     command: yarn dev
     ports:
-      - 8000:3000
-    container_name: nextjs-boilerplate
+      - 3000:3000
+    container_name: open-weather-web-app
 
   storybook:
     build: .
     volumes:
-      - .:/web-front
+      - .:/app
     command: yarn storybook
     ports:
       - 6006:6006
-    container_name: nextjs-boilerplate-storybook
-
+    container_name: open-weather-web-app-storybook
