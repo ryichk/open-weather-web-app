@@ -1,7 +1,6 @@
 import axios from 'axios';
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import type {NextPage, GetServerSidePropsContext} from 'next/types';
 
 type Weather = {
   id: number;
@@ -20,11 +19,11 @@ type Props = {
   humidity: number | null;
 }
 
-const Home: NextPage = ({ place, weather, temp, temp_min, temp_max, feels_like, humidity }: Props) => {
+const Home: NextPage<Props> = ({ place, weather, temp, temp_min, temp_max, feels_like, humidity }) => {
   // const [latitude, setLatitude] = useState('');
   // const [longitude, setLongitude] = useState('');
 
-  useEffect(() => {
+  // useEffect(() => {
     // const setLocation = (position) => {
     //   setLatitude(position.coords.lattitude);
     //   setLongitude(position.coords.longitude);
@@ -43,7 +42,7 @@ const Home: NextPage = ({ place, weather, temp, temp_min, temp_max, feels_like, 
     // } else {
     //   alert('ブラウザが位置情報取得に対応していません');
     // }
-  }, []);
+  // }, []);
 
   return (
     <div className=''>
@@ -97,7 +96,7 @@ const Home: NextPage = ({ place, weather, temp, temp_min, temp_max, feels_like, 
 
 export default Home;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
     const host = context.req.headers.host || 'localhost:3000';
     const protocol = /^localhost/.test(host) ? 'http' : 'https';
